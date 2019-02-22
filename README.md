@@ -28,12 +28,18 @@ py -3 -m venv env
 env\scripts\activate
 ```
 
-3. Install requirements.txt
+In Powershell
+```Powershell
+py -3 -m venv env
+env\scripts\activate
+```
+
+2. Install requirements.txt
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Import the project folder into VS Code
+3. Import the project folder into VS Code
 ```bash
 code .
 ```
