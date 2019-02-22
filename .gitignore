@@ -1,5 +1,9 @@
 # python
 __pycache__/
+env
+venv
+.env
+.venv
 
 # local db
 db.sqlite3
@@ -26,3 +30,6 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# VS Code
+.vscode

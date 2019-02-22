@@ -14,6 +14,19 @@ git clone [TODO INSERT URL]
 cd flask-react-postgres
 ```
 
+3. Create and activate a virtual environment
+In Bash
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+In Powershell
+```Powershell
+py -3 -m venv env
+env\scripts\activate
+```
+
 2. Install requirements.txt
 ```bash
 pip install -r requirements.txt
