@@ -56,11 +56,17 @@ npm run build
 cd ..
 python manage.py create_db
 ```
-3. Start the Flask server
+
+3. (optionally) provide an instrumentation key to send telemetry to Application Insights
+```bash
+export APPINSIGHTS_INSTRUMENTATIONKEY="<insert your instrumentation key here>"
+```
+
+4. Start the Flask server
 ```bash
 python manage.py runserver
 ```
-4. Check ```localhost:5000``` in your browser to view the web application.
+5. Check ```localhost:5000``` in your browser to view the web application.
 
 ## 3. Deploying The Code To Azure
 
@@ -80,7 +86,7 @@ python manage.py runserver
 
 8. Navigate to the Azure portal for the App service instance that was just created, and under the "Application Settings" tab and uneder the "Runtime" section, set the "startup file" parameter to be "startup.txt"
 
-9. Again under the "Application Settings" tab and under the "Application Settings" section, add a new environment variable for the Postgres 
+9. Again under the "Application Settings" tab and under the "Application Settings" section, add a new environment variable for the Postgres and optionally for Application insights.
 
 10. Deploy the code to your newly created App Service instance
 
