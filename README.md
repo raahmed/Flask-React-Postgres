@@ -6,12 +6,12 @@ The code is based on https://github.com/dternyak/React-Redux-Flask and https://g
 
 ## Tutorial
 
-## 1. Setting Up The Project
+### Setting Up The Project
 
 1. Clone the reponsitory
 ```bash
 git clone https://github.com/jeffreymew/Flask-React-Postgres.git
-cd flask-react-postgres
+cd Flask-React-Postgres
 ```
 
 2. Create and activate a virtual environment
@@ -20,12 +20,6 @@ In Bash
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-```
-
-In Powershell
-```Powershell
-py -3 -m venv env
-env\scripts\activate
 ```
 
 In Powershell
@@ -44,7 +38,7 @@ pip install -r requirements.txt
 code .
 ```
 
-## 2. Running The Code Locally
+### Running The Code Locally
 
 1. Build the react.js front-end.
 ```bash
@@ -68,7 +62,9 @@ python manage.py runserver
 ```
 5. Check ```localhost:5000``` in your browser to view the web application.
 
-## 3. Deploying The Code To Azure
+### Deploying The Code To Azure
+
+#### VSCode Setup
 
 1. Go to the extensions tab on VS Code
 
@@ -76,19 +72,45 @@ python manage.py runserver
 
 3. Reload the window and navigate to the Azure tab on the left
 
-4. Access Azure services through (1) Guest Mode, (2) Creating a free Azure account or (3) signing into Azure with an existing account
+#### App Service Setup
 
-5. Create an App Service instance with the parameters of a linux system with a Python runtime
+1. Access Azure services through (1) Guest Mode, (2) Creating a free Azure account or (3) signing into Azure with an existing account
 
-6. Create a PostgreSQL database with Azure Database for Postgres and connect it to the App Service instance
+2. [Create an App Service](https://code.visualstudio.com/docs/python/tutorial-deploy-app-service-on-linux) instance with the parameters of a L`inux system with a Python 3.7 runtime
 
-7. Navigate to the Azure portal for the Azure Database for Postgres instance and allow incoming connections to the instance for everyone 
+3. Navigate to the Azure portal for the App service instance that was just created, and under the "Application Settings" tab and uneder the "Runtime" section, set the "Startup File" parameter to be *scripts/startup.sh*
 
-8. Navigate to the Azure portal for the App service instance that was just created, and under the "Application Settings" tab and uneder the "Runtime" section, set the "startup file" parameter to be "startup.txt"
+4. Set `POST_BUILD_SCRIPT_PATH=scripts/post.sh`  in app settings (VSCode or portal)
 
-9. Again under the "Application Settings" tab and under the "Application Settings" section, add a new environment variable for the Postgres and optionally for Application insights.
+#### Database Setup
 
-10. Deploy the code to your newly created App Service instance
+1. [Create a PostgreSQL database with Azure Database for Postgres](https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal) 
+
+2. Navigate to the Azure portal for the Azure Database for Postgres instance and allow incoming connections:
+
+   - Connection Security - Allow access to Azure Services (not sure this is needed)  
+   - Connection Security - add local laptopIP to firewall rules 
+   
+3. Create a new empty database on the Postgres instance, e.g *team_standup*
+
+4. Run the create_db script with a `DATABASE_URL` for the Azure database:
+   ```
+   DATABASE_URL=postgresql://<username>:<password>@<dbserver>.postgres.database.azure.com:5432/<database> python manage.py create_db
+   ```
+    *NOTE: the `<username>` is of the format `<name>@<dbserver>`*
+
+5. Add the `DATABASE_URL` as an application setting environment variable (VSCode or portal)
+
+
+#### Deployment
+
+1. In VSCode, Configure Deployment Source as *LocalGit*
+
+2. Optionally, under the "Application Settings", add a new environment variable for [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview).
+
+3. In VSCoode, right-click the App Service, select *Deploy to Web App*
+
+(See [Deploying your app using Git](right-click the App Service again, select Deploy to Web App) for more details)
 
 ## License
 
