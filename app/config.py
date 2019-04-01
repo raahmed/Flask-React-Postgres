@@ -12,12 +12,12 @@ def _get_database_uri():
         credentials = MSIAuthentication()
         key_vault_client = KeyVaultClient(credentials)
 
-        key_vault_uri = os.environ.get("KEY_VAULT_URI")
+        key_vault_uri = os.environ.get("KEY_VAULT_URI", "PUT YOUR KV BASE URL HERE")
 
         return key_vault_client.get_secret(
             vault_base_url=key_vault_uri,
             secret_name="database-url",
-            secret_version="" # empty string -> latest secret version
+            secret_version="" # empty string -> latest version
         )
     else:
         return TestingConfig.SQLALCHEMY_DATABASE_URI
