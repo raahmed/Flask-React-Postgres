@@ -50,11 +50,17 @@ npm run build
 cd ..
 python manage.py create_db
 ```
-3. Start the Flask server
+
+3. (optionally) provide an instrumentation key to send telemetry to Application Insights
+```bash
+export APPINSIGHTS_INSTRUMENTATIONKEY="<insert your instrumentation key here>"
+```
+
+4. Start the Flask server
 ```bash
 python manage.py runserver
 ```
-4. Check ```localhost:5000``` in your browser to view the web application.
+5. Check ```localhost:5000``` in your browser to view the web application.
 
 ### Deploying The Code To Azure
 
@@ -93,14 +99,16 @@ python manage.py runserver
    ```
     *NOTE: the `<username>` is of the format `<name>@<dbserver>`*
 
-5. Add the `DATABASE_URL` as an application setting (VSCode or portal)
+5. Add the `DATABASE_URL` as an application setting environment variable (VSCode or portal)
 
 
 #### Deployment
 
 1. In VSCode, Configure Deployment Source as *LocalGit*
 
-2. In VSCoode, right-click the App Service, select *Deploy to Web App*
+2. Optionally, under the "Application Settings", add a new environment variable for [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview).
+
+3. In VSCoode, right-click the App Service, select *Deploy to Web App*
 
 (See [Deploying your app using Git](right-click the App Service again, select Deploy to Web App) for more details)
 
