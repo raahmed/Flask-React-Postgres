@@ -102,6 +102,10 @@ python manage.py runserver
 5. Add the `DATABASE_URL` as an application setting environment variable (VSCode or portal)
 
 
+#### Keyvault Setup
+
+TBD
+
 #### Deployment
 
 1. In VSCode, Configure Deployment Source as *LocalGit*
