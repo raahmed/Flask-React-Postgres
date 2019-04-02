@@ -104,7 +104,7 @@ python manage.py runserver
 
 #### Keyvault Setup
 
-(TBD)
+TBD
 
 #### Deployment
 
