@@ -3,3 +3,4 @@ flask_script==2.0.6
 psycopg2==2.7.5
 flask_bcrypt==0.7.1
 applicationinsights==0.11.8
+azure-keyvault==1.1.0
