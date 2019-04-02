@@ -23,7 +23,7 @@ def _get_database_uri():
             vault_base_url=key_vault_uri,
             secret_name="database-url",
             secret_version="" # empty string -> latest version
-        )
+        ).value
         logger.info("Secret info: {} {}".format(type(result), len(result))) # XXX TEMP DEBUG
         return result
 
