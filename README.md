@@ -99,12 +99,15 @@ python manage.py runserver
    ```
     *NOTE: the `<username>` is of the format `<name>@<dbserver>`*
 
-5. Add the `DATABASE_URL` as an application setting environment variable (VSCode or portal)
-
 
 #### Keyvault Setup
 
-TBD
+1. Create an Azure KeyVault with a secret named `database-url` which contains the entire Postgres database URL, e.g.
+   ```
+   postgresql://<username>:<password>@<dbserver>.postgres.database.azure.com:5432/<database>
+   ```
+
+2. Add the `KEY_VAULT_URI` as an application setting environment variable
 
 #### Deployment
 
@@ -112,7 +115,7 @@ TBD
 
 2. Optionally, under the "Application Settings", add a new environment variable for [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview).
 
-3. In VSCoode, right-click the App Service, select *Deploy to Web App*
+3. In VSCode, right-click the App Service, select *Deploy to Web App*
 
 (See [Deploying your app using Git](right-click the App Service again, select Deploy to Web App) for more details)
 

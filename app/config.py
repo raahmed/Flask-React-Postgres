@@ -28,8 +28,14 @@ def _get_database_uri():
         return result
 
     else:
-        logger.info("Using local Testing Database")
-        return TestingConfig.SQLALCHEMY_DATABASE_URI
+        # TODO: this is just to allow the create_db script to be run locally on initial setup
+        # Really, the KV code above should be updated to work with other non-MSI credentials
+        if "DATABASE_URL" in os.environ:
+            logger.info("Using DATABASE_URL credentials")
+            return os.environ['DATABASE_URL']
+        else:
+            logger.info("Using local Testing Database")
+            return TestingConfig.SQLALCHEMY_DATABASE_URI
 
 
 class BaseConfig(object):
