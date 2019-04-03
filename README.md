@@ -97,8 +97,9 @@ python manage.py runserver
    ```
    DATABASE_URL=postgresql://<username>:<password>@<dbserver>.postgres.database.azure.com:5432/<database> python manage.py create_db
    ```
-    *NOTE: the `<username>` is of the format `<name>@<dbserver>`*
+   *NOTE: the `<username>` is of the format `<name>@<dbserver>`*
 
+   TODO: This should be updated to use a Service Principal account?
 
 #### Keyvault Setup
 
@@ -106,8 +107,13 @@ python manage.py runserver
    ```
    postgresql://<username>:<password>@<dbserver>.postgres.database.azure.com:5432/<database>
    ```
+   *NOTE: the `<username>` is of the format `<name>@<dbserver>`*
 
-2. Add the `KEY_VAULT_URI` as an application setting environment variable
+2. Add the `KEY_VAULT_URI` with the URL to the KeyVault, as an application setting environment variable
+
+3. Under App Services -> Identity, enable System Managed Identity (portal)
+
+4. Under Key Vault -> Access Policies, grant the App Service user access to the vault secrets (portal)
 
 #### Deployment
 
