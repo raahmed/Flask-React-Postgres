@@ -24,17 +24,9 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-
-- script: |
-
-    git push -f "https://$DEPLOYMENT_USERNAME:$DEPLOYMENT_PASSWORD@$DEPLOYMENT_URL" HEAD:master
-
-  env:
-
-    DEPLOYMENT_URL: $(DEPLOYMENT_URL)
-
-    DEPLOYMENT_USERNAME: $(DEPLOYMENT_USERNAME)
-
-    DEPLOYMENT_PASSWORD: $(DEPLOYMENT_PASSWORD)
-
-  displayName: 'LocalGit Deploy'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectedServiceName: 'Microsoft Azure Internal Consumption(88284e7c-9ede-4ce8-917e-d33f3e1fb553)'
+    WebAppKind: 'webAppLinux'
+    WebAppName: 'flask-react-postgres'
+    RuntimeStack: 'PYTHON|3.7'
