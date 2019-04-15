@@ -24,3 +24,17 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
+
+- script: |
+
+    git push -f "https://$DEPLOYMENT_USERNAME:$DEPLOYMENT_PASSWORD@$DEPLOYMENT_URL" HEAD:master
+
+  env:
+
+    DEPLOYMENT_URL: $(DEPLOYMENT_URL)
+
+    DEPLOYMENT_USERNAME: $(DEPLOYMENT_USERNAME)
+
+    DEPLOYMENT_PASSWORD: $(DEPLOYMENT_PASSWORD)
+
+  displayName: 'LocalGit Deploy'
